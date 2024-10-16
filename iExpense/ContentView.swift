@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
+import Observation // This allow to expand the macro 
 
 @Observable
-
 class User{
     var firstName = "Greatest"
     var lastName = "Ever"
