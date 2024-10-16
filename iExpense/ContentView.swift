@@ -19,24 +19,22 @@ struct SecondView: View {
     }
 }
 
-
+struct User: Codable {
+    let firstNamed: String
+    let lastNamed: String
+}
 
 struct ContentView: View {
     
-    //    @State private var showingSheet = false
-    //
-    //    @State private var numbers = [Int]()
-    //    @State private var currentNumber = 1
-    
-//    @State private var tapCount = UserDefaults.standard.integer(forKey: "Tap")
-    
-    @AppStorage("tapCount") private var tapCount = 0
+@State private var user = User(firstNamed: "Greatest", lastNamed: "Ever")
     
     var body: some View {
-        Button("Tap Count: \(tapCount)") {
-            tapCount += 1
+        Button("Save User"){
+            let encoder = JSONEncoder()
             
-//            UserDefaults.standard.set(tapCount, forKey: "Tap")
+            if let data = try? encoder.encode(user) {
+                UserDefaults.standard.set(data, forKey: "UserData")
+            }
         }
         
     }
